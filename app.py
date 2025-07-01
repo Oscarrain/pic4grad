@@ -18,8 +18,18 @@ def get_scale(form):
     except Exception:
         return 1.0
 
-def get_temp_filename(suffix='.jpg'):
-    return next(tempfile._get_candidate_names()) + suffix
+def get_temp_filename(original_extension='.jpg'):
+    """根据原始文件扩展名生成临时文件名"""
+    # 确保扩展名以.开头
+    if not original_extension.startswith('.'):
+        original_extension = '.' + original_extension
+    return next(tempfile._get_candidate_names()) + original_extension
+
+def get_file_extension(filename):
+    """获取文件扩展名"""
+    if filename:
+        return os.path.splitext(filename)[1].lower()
+    return '.jpg'
 
 def get_image_size(orig_path):
     with Image.open(orig_path) as img:
@@ -49,7 +59,9 @@ def index():
             # 新上传图片，保存原图，重置参数
             scale = 1.0
             original_filename = file.filename
-            orig_filename = get_temp_filename('.orig.jpg')
+            # 根据原始文件扩展名保存
+            file_extension = get_file_extension(original_filename)
+            orig_filename = get_temp_filename(file_extension)
             orig_path = os.path.join(tempfile.gettempdir(), orig_filename)
             file.save(orig_path)
             w, h = get_image_size(orig_path)

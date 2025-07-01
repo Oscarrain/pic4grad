@@ -4,6 +4,18 @@ from PIL import Image
 
 def resize_and_crop(input_path, output_path, scale=1.0, center_x=None, top_y=None):
     img = Image.open(input_path)
+    
+    # 处理透明背景：如果是RGBA模式，转换为RGB
+    if img.mode in ('RGBA', 'LA', 'P'):
+        # 创建白色背景
+        background = Image.new('RGB', img.size, (255, 255, 255))
+        if img.mode == 'P':
+            img = img.convert('RGBA')
+        background.paste(img, mask=img.split()[-1] if img.mode == 'RGBA' else None)
+        img = background
+    elif img.mode != 'RGB':
+        img = img.convert('RGB')
+    
     w, h = img.size
     target_w, target_h = 150, 200
     target_ratio = target_w / target_h

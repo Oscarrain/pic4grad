@@ -15,14 +15,15 @@
 <body>
 <div class="container">
   <h1 style="text-align:center;">pic4grad</h1>
-  <p style="text-align:center; font-size:1.1em; margin-bottom:0.5em;">为研招报名照发愁？pic4grad 帮你轻松搞定：自由缩放、移动、保存，一键生成报名证件照。</p>
+  <p style="text-align:center; font-size:1.1em; margin-bottom:0.5em;">为研招报名照发愁？pic4grad 帮你轻松搞定：自由缩放、移动、保存，一键生成报名证件照。<br>200*150像素，JPG格式，符合许多研究生招生平台要求。</p>
   <p style="text-align:center; color:#666; margin-top:0;">Worried about your graduate admission photo? pic4grad makes it easy: freely scale, move, save, and generate compliant admission photos in one click.</p>
   <form id="uploadForm" method=post enctype=multipart/form-data>
     <label for="fileInput">选择图片：</label>
-    <input type=file id="fileInput" name=file required onchange="this.form.submit()" title="选择图片">
+    <input type=file id="fileInput" name=file required onchange="this.form.submit()" title="选择图片" accept="image/*">
     <input type=hidden name=center_x value="{{ center_x }}">
     <input type=hidden name=top_y value="{{ top_y }}">
   </form>
+  <p style="text-align:center; color:#666; font-size:0.8em; margin:5px 0;">支持格式：JPG、PNG、BMP、GIF、TIFF等常见图片格式</p>
   {% if image_url %}
     <h3>处理结果预览：</h3>
     <img src="{{ image_url }}" alt="处理后图片预览" style="border:1px solid #888; width:150px; height:200px;">
@@ -159,6 +160,42 @@
     </form>
     <p><a href="{{ download_url }}">点击下载图片</a></p>
   {% endif %}
+  
+  <!-- 项目信息区域 -->
+  <div style="margin-top: 40px; padding: 20px; background-color: #f8f9fa; border-radius: 8px; text-align: center;">
+    <h4 style="margin-bottom: 15px; color: #333;">项目信息</h4>
+    
+    <div style="margin-bottom: 15px;">
+      <p style="margin: 5px 0; color: #555; font-size: 0.9em;">
+        <strong>项目目的：</strong>生成200×150像素的JPG格式照片，符合大多数研究生招生平台要求
+      </p>
+    </div>
+    
+    <div style="margin-bottom: 15px;">
+      <p style="margin: 5px 0; color: #555; font-size: 0.9em;">
+        <strong>项目地址：</strong>
+        <a href="https://github.com/Oscarrain/pic4grad" target="_blank" style="color: #007bff; text-decoration: none;">GitHub</a>
+      </p>
+      <p style="margin: 5px 0; color: #555; font-size: 0.9em;">
+        <strong>代码作者：</strong>
+        <a href="https://github.com/Oscarrain" target="_blank" style="color: #007bff; text-decoration: none;">@Oscarrain</a>
+        （欢迎提<a href="https://github.com/Oscarrain/pic4grad/issues" target="_blank" style="color: #007bff; text-decoration: none;">issue</a>）
+        <br>
+        <span style="font-size: 0.8em; color: #666;">邮箱：quemh22@mails.tsinghua.edu.cn</span>
+      </p>
+      <p style="margin: 5px 0; color: #555; font-size: 0.9em;">
+        <strong>部署与域名：</strong>
+        <a href="https://github.com/HarryTMa" target="_blank" style="color: #007bff; text-decoration: none;">@HarryTMa</a>
+      </p>
+    </div>
+    
+    <div style="margin-top: 15px; padding-top: 15px; border-top: 1px solid #ddd;">
+      <p style="margin: 0; color: #666; font-size: 0.8em;">
+        该网页有备案：
+        <a href=" " target="_blank" style="color: #007bff; text-decoration: none;">沪ICP备2024095349号-1</a>
+      </p>
+    </div>
+  </div>
 </div>
 <script>
 // 保留文件名直到删除或上传新图片
