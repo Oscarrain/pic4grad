@@ -26,9 +26,13 @@
   {% if image_url %}
     <h3>处理结果预览：</h3>
     <img src="{{ image_url }}" alt="处理后图片预览" style="border:1px solid #888; width:150px; height:200px;">
+    {% if original_filename %}
+    <p style="text-align:center; margin:5px 0; color:#666; font-size:0.9em;">{{ original_filename }}</p>
+    {% endif %}
     <br>
     <form method="post" style="display:inline; margin-top:10px;">
       <input type="hidden" name="orig_filename" value="{{ orig_filename }}">
+      <input type="hidden" name="original_filename" value="{{ original_filename }}">
       <input type="hidden" name="center_x" value="{{ center_x }}">
       <input type="hidden" name="top_y" value="{{ top_y }}">
       <label for="scaleInput">缩放比例：</label>
@@ -37,6 +41,7 @@
     </form>
     <form method="post" style="display:inline;">
       <input type="hidden" name="orig_filename" value="{{ orig_filename }}">
+      <input type="hidden" name="original_filename" value="{{ original_filename }}">
       <input type="hidden" name="center_x" value="{{ center_x }}">
       <input type="hidden" name="top_y" value="{{ top_y }}">
       <input type="hidden" name="scale" value="{{ scale_up }}">
@@ -44,6 +49,7 @@
     </form>
     <form method="post" style="display:inline;">
       <input type="hidden" name="orig_filename" value="{{ orig_filename }}">
+      <input type="hidden" name="original_filename" value="{{ original_filename }}">
       <input type="hidden" name="center_x" value="{{ center_x }}">
       <input type="hidden" name="top_y" value="{{ top_y }}">
       <input type="hidden" name="scale" value="{{ scale_down }}">
@@ -51,6 +57,7 @@
     </form>
     <form method="post" style="display:inline;">
       <input type="hidden" name="orig_filename" value="{{ orig_filename }}">
+      <input type="hidden" name="original_filename" value="{{ original_filename }}">
       <input type="hidden" name="center_x" value="{{ default_center_x }}">
       <input type="hidden" name="top_y" value="0">
       <input type="hidden" name="scale" value="1.0">
@@ -62,6 +69,7 @@
         <td>
           <form method="post" style="display:inline;">
             <input type="hidden" name="orig_filename" value="{{ orig_filename }}">
+            <input type="hidden" name="original_filename" value="{{ original_filename }}">
             <input type="hidden" name="scale" value="{{ scale }}">
             <input type="hidden" name="center_x" value="{{ center_x }}">
             <input type="hidden" name="top_y" value="{{ up_y }}">
@@ -70,6 +78,7 @@
           <br>
           <form method="post" style="display:inline;">
             <input type="hidden" name="orig_filename" value="{{ orig_filename }}">
+            <input type="hidden" name="original_filename" value="{{ original_filename }}">
             <input type="hidden" name="scale" value="{{ scale }}">
             <input type="hidden" name="center_x" value="{{ center_x }}">
             <input type="hidden" name="top_y" value="{{ top_y_minus1 }}">
@@ -82,6 +91,7 @@
         <td>
           <form method="post" style="display:inline;">
             <input type="hidden" name="orig_filename" value="{{ orig_filename }}">
+            <input type="hidden" name="original_filename" value="{{ original_filename }}">
             <input type="hidden" name="scale" value="{{ scale }}">
             <input type="hidden" name="center_x" value="{{ left_x }}">
             <input type="hidden" name="top_y" value="{{ top_y }}">
@@ -90,6 +100,7 @@
           <br>
           <form method="post" style="display:inline;">
             <input type="hidden" name="orig_filename" value="{{ orig_filename }}">
+            <input type="hidden" name="original_filename" value="{{ original_filename }}">
             <input type="hidden" name="scale" value="{{ scale }}">
             <input type="hidden" name="center_x" value="{{ center_x_minus1 }}">
             <input type="hidden" name="top_y" value="{{ top_y }}">
@@ -100,6 +111,7 @@
         <td>
           <form method="post" style="display:inline;">
             <input type="hidden" name="orig_filename" value="{{ orig_filename }}">
+            <input type="hidden" name="original_filename" value="{{ original_filename }}">
             <input type="hidden" name="scale" value="{{ scale }}">
             <input type="hidden" name="center_x" value="{{ right_x }}">
             <input type="hidden" name="top_y" value="{{ top_y }}">
@@ -108,6 +120,7 @@
           <br>
           <form method="post" style="display:inline;">
             <input type="hidden" name="orig_filename" value="{{ orig_filename }}">
+            <input type="hidden" name="original_filename" value="{{ original_filename }}">
             <input type="hidden" name="scale" value="{{ scale }}">
             <input type="hidden" name="center_x" value="{{ center_x_plus1 }}">
             <input type="hidden" name="top_y" value="{{ top_y }}">
@@ -120,6 +133,7 @@
         <td>
           <form method="post" style="display:inline;">
             <input type="hidden" name="orig_filename" value="{{ orig_filename }}">
+            <input type="hidden" name="original_filename" value="{{ original_filename }}">
             <input type="hidden" name="scale" value="{{ scale }}">
             <input type="hidden" name="center_x" value="{{ center_x }}">
             <input type="hidden" name="top_y" value="{{ down_y }}">
@@ -128,6 +142,7 @@
           <br>
           <form method="post" style="display:inline;">
             <input type="hidden" name="orig_filename" value="{{ orig_filename }}">
+            <input type="hidden" name="original_filename" value="{{ original_filename }}">
             <input type="hidden" name="scale" value="{{ scale }}">
             <input type="hidden" name="center_x" value="{{ center_x }}">
             <input type="hidden" name="top_y" value="{{ top_y_plus1 }}">

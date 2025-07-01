@@ -31,6 +31,7 @@ def index():
     download_url = None
     orig_filename = None
     result_filename = None
+    original_filename = None
     scale = 1.0
     center_x = None
     top_y = None
@@ -42,10 +43,12 @@ def index():
         orig_filename = request.form.get('orig_filename')
         center_x = request.form.get('center_x')
         top_y = request.form.get('top_y')
+        original_filename = request.form.get('original_filename')
         file = request.files.get('file')
         if file:
             # 新上传图片，保存原图，重置参数
             scale = 1.0
+            original_filename = file.filename
             orig_filename = get_temp_filename('.orig.jpg')
             orig_path = os.path.join(tempfile.gettempdir(), orig_filename)
             file.save(orig_path)
@@ -141,7 +144,7 @@ def index():
         center_x_minus1 = center_x_plus1 = top_y_minus1 = top_y_plus1 = 0
     scale_up = round(float(scale) * 1.1, 2)
     scale_down = round(float(scale) * 0.9, 2)
-    return render_template('index.html', image_url=image_url, download_url=download_url, orig_filename=orig_filename, result_filename=result_filename, scale=scale, scale_up=scale_up, scale_down=scale_down, center_x=center_x, top_y=top_y, left_x=left_x, right_x=right_x, up_y=up_y, down_y=down_y, default_center_x=default_center_x, center_x_minus1=center_x_minus1, center_x_plus1=center_x_plus1, top_y_minus1=top_y_minus1, top_y_plus1=top_y_plus1)
+    return render_template('index.html', image_url=image_url, download_url=download_url, orig_filename=orig_filename, result_filename=result_filename, scale=scale, scale_up=scale_up, scale_down=scale_down, center_x=center_x, top_y=top_y, left_x=left_x, right_x=right_x, up_y=up_y, down_y=down_y, default_center_x=default_center_x, center_x_minus1=center_x_minus1, center_x_plus1=center_x_plus1, top_y_minus1=top_y_minus1, top_y_plus1=top_y_plus1, original_filename=original_filename)
 
 @app.route('/preview/<filename>')
 def preview(filename):
