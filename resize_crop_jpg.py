@@ -1,6 +1,8 @@
 import sys
 import os
 from PIL import Image
+import pillow_heif
+pillow_heif.register_heif_opener()
 
 def resize_and_crop(input_path, output_path, scale=1.0, center_x=None, top_y=None):
     img = Image.open(input_path)

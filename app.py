@@ -4,6 +4,8 @@ import os
 from resize_crop_jpg import resize_and_crop
 import shutil
 from PIL import Image
+import pillow_heif
+pillow_heif.register_heif_opener()
 
 app = Flask(__name__)
 
