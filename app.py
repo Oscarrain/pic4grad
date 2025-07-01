@@ -59,15 +59,19 @@ def index():
             else:
                 crop_w = int(w / scale)
                 crop_h = int(w / (150/200) / scale)
-            left_x = max(crop_w//2, center_x - int(w * 0.05))
-            right_x = min(w - crop_w//2, center_x + int(w * 0.05))
-            up_y = max(0, top_y - int(h * 0.05))
-            down_y = min(h - crop_h, top_y + int(h * 0.05))
+            move_step_x = int(w * 0.05)
+            move_step_y = int(h * 0.05)
+            micro_step_x = max(1, move_step_x // 10)
+            micro_step_y = max(1, move_step_y // 10)
+            left_x = max(crop_w//2, center_x - move_step_x)
+            right_x = min(w - crop_w//2, center_x + move_step_x)
+            up_y = max(0, top_y - move_step_y)
+            down_y = min(h - crop_h, top_y + move_step_y)
             default_center_x = w // 2
-            center_x_minus1 = max(crop_w//2, center_x - 1)
-            center_x_plus1 = min(w - crop_w//2, center_x + 1)
-            top_y_minus1 = max(0, top_y - 1)
-            top_y_plus1 = min(h - crop_h, top_y + 1)
+            center_x_minus1 = max(crop_w//2, center_x - micro_step_x)
+            center_x_plus1 = min(w - crop_w//2, center_x + micro_step_x)
+            top_y_minus1 = max(0, top_y - micro_step_y)
+            top_y_plus1 = min(h - crop_h, top_y + micro_step_y)
         elif orig_filename:
             orig_path = os.path.join(tempfile.gettempdir(), orig_filename)
             w, h = get_image_size(orig_path)
@@ -78,9 +82,10 @@ def index():
             except Exception:
                 center_x = w // 2
                 top_y = 0
-            # 移动操作
             move_step_x = int(w * 0.05)
             move_step_y = int(h * 0.05)
+            micro_step_x = max(1, move_step_x // 10)
+            micro_step_y = max(1, move_step_y // 10)
             if w/h > 150/200:
                 crop_w = int(h * 150/200 / scale)
                 crop_h = int(h / scale)
@@ -103,18 +108,18 @@ def index():
             up_y = max(0, top_y - move_step_y)
             down_y = min(h - crop_h, top_y + move_step_y)
             default_center_x = w // 2
-            center_x_minus1 = max(crop_w//2, center_x - 1)
-            center_x_plus1 = min(w - crop_w//2, center_x + 1)
-            top_y_minus1 = max(0, top_y - 1)
-            top_y_plus1 = min(h - crop_h, top_y + 1)
+            center_x_minus1 = max(crop_w//2, center_x - micro_step_x)
+            center_x_plus1 = min(w - crop_w//2, center_x + micro_step_x)
+            top_y_minus1 = max(0, top_y - micro_step_y)
+            top_y_plus1 = min(h - crop_h, top_y + micro_step_y)
             if action == 'move_left_px':
-                center_x = max(crop_w//2, center_x - 1)
+                center_x = max(crop_w//2, center_x - micro_step_x)
             elif action == 'move_right_px':
-                center_x = min(w - crop_w//2, center_x + 1)
+                center_x = min(w - crop_w//2, center_x + micro_step_x)
             elif action == 'move_up_px':
-                top_y = max(0, top_y - 1)
+                top_y = max(0, top_y - micro_step_y)
             elif action == 'move_down_px':
-                top_y = min(h - crop_h, top_y + 1)
+                top_y = min(h - crop_h, top_y + micro_step_y)
         else:
             left_x = right_x = up_y = down_y = 0
             default_center_x = 0

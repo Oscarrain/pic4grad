@@ -32,8 +32,29 @@
       <input type="hidden" name="center_x" value="{{ center_x }}">
       <input type="hidden" name="top_y" value="{{ top_y }}">
       <label for="scaleInput">缩放比例：</label>
-      <input type="number" step="0.01" min="1.0" max="2.0" name="scale" id="scaleInput" value="{{ scale }}" style="width:60px;" placeholder="1.00-2.00">
+      <input type="number" step="0.01" min="1.0" max="5.0" name="scale" id="scaleInput" value="{{ scale }}" style="width:60px;" placeholder="1.00-5.00">
       <button type="submit">应用</button>
+    </form>
+    <form method="post" style="display:inline;">
+      <input type="hidden" name="orig_filename" value="{{ orig_filename }}">
+      <input type="hidden" name="center_x" value="{{ center_x }}">
+      <input type="hidden" name="top_y" value="{{ top_y }}">
+      <input type="hidden" name="scale" value="{{ scale_up }}">
+      <button type="submit" name="action" value="zoom_in">放大</button>
+    </form>
+    <form method="post" style="display:inline;">
+      <input type="hidden" name="orig_filename" value="{{ orig_filename }}">
+      <input type="hidden" name="center_x" value="{{ center_x }}">
+      <input type="hidden" name="top_y" value="{{ top_y }}">
+      <input type="hidden" name="scale" value="{{ scale_down }}">
+      <button type="submit" name="action" value="zoom_out" {% if scale <= 1.0 %}disabled{% endif %}>缩小</button>
+    </form>
+    <form method="post" style="display:inline;">
+      <input type="hidden" name="orig_filename" value="{{ orig_filename }}">
+      <input type="hidden" name="center_x" value="{{ default_center_x }}">
+      <input type="hidden" name="top_y" value="0">
+      <input type="hidden" name="scale" value="1.0">
+      <button type="submit" name="action" value="reset">重置</button>
     </form>
     <table style="margin-top:10px;">
       <tr>

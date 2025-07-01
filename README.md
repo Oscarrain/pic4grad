@@ -14,11 +14,12 @@ Worried about your graduate admission photo? pic4grad makes it easy: freely scal
    ```
    python app.py
    ```
-3. 生产部署
+   默认访问：http://localhost:5000
+3. 生产部署（推荐端口8000，可自定义）
    ```
    gunicorn -w 4 -b 0.0.0.0:8000 app:app
    ```
-4. 浏览器访问 http://localhost:8000
+   默认访问：http://localhost:8000
 
 ## 功能
 - 智能裁剪、缩放、移动
