@@ -13,6 +13,17 @@ import time
 app = Flask(__name__)
 app.secret_key = secrets.token_hex(16)  # 生成随机密钥
 
+
+def visit_count():
+    for i in range(5):
+        try:
+            with open('n.txt') as f:
+                return "访问量：" + f.read()
+        except:
+            time.sleep(0.05)
+    return ''
+
+
 def get_scale(form):
     try:
         scale = float(form.get('scale', '1.0'))
@@ -249,7 +260,7 @@ def index():
         center_x_minus1 = center_x_plus1 = top_y_minus1 = top_y_plus1 = 0
     scale_up = round(float(scale) * 1.1, 2)
     scale_down = round(float(scale) * 0.9, 2)
-    return render_template('index.html', image_url=image_url, download_url=download_url, orig_filename=orig_filename, result_filename=result_filename, scale=scale, scale_up=scale_up, scale_down=scale_down, center_x=center_x, top_y=top_y, left_x=left_x, right_x=right_x, up_y=up_y, down_y=down_y, default_center_x=default_center_x, center_x_minus1=center_x_minus1, center_x_plus1=center_x_plus1, top_y_minus1=top_y_minus1, top_y_plus1=top_y_plus1, original_filename=original_filename)
+    return render_template('index.html', image_url=image_url, download_url=download_url, orig_filename=orig_filename, result_filename=result_filename, scale=scale, scale_up=scale_up, scale_down=scale_down, center_x=center_x, top_y=top_y, left_x=left_x, right_x=right_x, up_y=up_y, down_y=down_y, default_center_x=default_center_x, center_x_minus1=center_x_minus1, center_x_plus1=center_x_plus1, top_y_minus1=top_y_minus1, top_y_plus1=top_y_plus1, original_filename=original_filename, visit_count=visit_count())
 
 @app.route('/preview/<filename>')
 def preview(filename):
